@@ -2,11 +2,5 @@
 
 git commit -a -m "doc updates"
 git fetch origin
-git merge origin/develop
+git merge origin/master
 rake publish
-git checkout master
-git merge gh-pages
-git checkout develop
-git push origin master
-git push origin develop
-git push origin gh-pages
