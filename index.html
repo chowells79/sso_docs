@@ -263,9 +263,40 @@ When a client wishes to do this they can use the refresh token to get a new acce
 
 <aside class="note">Send a <b>GET</b> request to https://sso.moxiworks.com/agent/profile</aside>
 
-<p>The request is to a resource gated by the presence of an OAuth 2 access token.</p>
+<p>The request is gated by the presence of an OAuth 2 access token.</p>
 
 <p>To send the access token in the request, add an <code class="prettyprint">Authorization</code> HTTP header with a value of <code class="prettyprint">Bearer &lt;access_token&gt;</code>.</p>
+
+<p>If the access token has expired or is otherwise invalid, the server responds with a <code class="prettyprint">401 Unauthorized</code> status.</p>
+
+<p>If the access token was valid, a JSON object is returned:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Remark</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><span class="required-data">display_name</span></td>
+<td><span class="data-type">String</span></td>
+<td><span class="data-remarks">The end user&rsquo;s display name</span></td>
+</tr>
+<tr>
+<td><span class="required-data">user_id</span></td>
+<td><span class="data-type">String</span></td>
+<td><span class="data-remarks">A string that uniquely identifies the end user</span></td>
+</tr>
+<tr>
+<td><span class="required-data">email</span></td>
+<td><span class="data-type">String</span></td>
+<td><span class="data-remarks">The end user&rsquo;s email address</span></td>
+</tr>
+</tbody></table>
+
+<p>More fields may be added to this in the future.
+Consumers of this data should not fail if more fields are present in the result.</p>
 
 
 <!---
